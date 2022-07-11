@@ -30,6 +30,9 @@ public class Callback {
         String text = tmc.getText();
         Intent intent = Intent.whichIntent(text);
         switch (intent) {
+            case PYTHONAPI:
+                PythonApi pythonApi = new PythonApi(event);
+                return pythonApi.reply();
             case UNKNOWN:
             default:
                 Parrot parrot = new Parrot(event);
