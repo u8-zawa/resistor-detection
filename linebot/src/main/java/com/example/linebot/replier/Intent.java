@@ -7,6 +7,7 @@ public enum Intent {
 
     // メッセージの正規表現パターンに対応するやりとり状態の定義
     PYTHONAPI("Python API"),
+    SUMMARY("^(.*)を要約$"),
     UNKNOWN(".+");
 
     private final String regexp;
