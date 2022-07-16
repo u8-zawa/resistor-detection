@@ -28,11 +28,17 @@ public class Callback {
     public Message handleMessage(MessageEvent<TextMessageContent> event) {
         TextMessageContent tmc = event.getMessage();
         String text = tmc.getText();
+        // 改行を削除（要約で改行の入っている文章も取り扱いたいため）
+        text = text.replace("\n", "");
+        text = text.replace("\r", "");
         Intent intent = Intent.whichIntent(text);
         switch (intent) {
             case PYTHONAPI:
                 PythonApi pythonApi = new PythonApi(event);
                 return pythonApi.reply();
+            case SUMMARY:
+                Summary summary = new Summary(event);
+                return summary.reply();
             case UNKNOWN:
             default:
                 Parrot parrot = new Parrot(event);
