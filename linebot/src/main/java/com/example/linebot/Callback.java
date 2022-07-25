@@ -85,8 +85,8 @@ public class Callback {
         }
         String path = opt.orElse("ファイル書き込みNG");
 
-        Resistor resistor = new Resistor(path);
-        return resistor.reply();
+        Yolo yolo = new Yolo(path);
+        return yolo.reply();
     }
 
     // MessageContentResponseの中のバイト入力ストリームを、拡張子を指定してファイルに書き込む。

@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Objects;
 
-public class Resistor implements Replier {
+public class Yolo implements Replier {
 
     private final String path;
 
-    public Resistor(String path) {
+    public Yolo(String path) {
         this.path = path;
     }
 
