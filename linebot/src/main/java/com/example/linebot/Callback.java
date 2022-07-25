@@ -1,6 +1,7 @@
 package com.example.linebot;
 
 import com.example.linebot.replier.*;
+import com.example.linebot.service.YoloService;
 import com.linecorp.bot.client.LineBlobClient;
 import com.linecorp.bot.client.MessageContentResponse;
 import com.linecorp.bot.model.event.FollowEvent;
@@ -25,10 +26,12 @@ public class Callback {
 
     private static final Logger log = LoggerFactory.getLogger(Callback.class);
     private final LineBlobClient client;
+    private final YoloService yoloService;
 
     @Autowired
-    public Callback(LineBlobClient client) {
+    public Callback(LineBlobClient client, YoloService yoloService) {
         this.client = client;
+        this.yoloService = yoloService;
     }
 
     // フォローイベントに対応する
@@ -85,7 +88,7 @@ public class Callback {
         }
         String path = opt.orElse("ファイル書き込みNG");
 
-        Yolo yolo = new Yolo(path);
+        Yolo yolo = yoloService.doReplyWithYolo(path);
         return yolo.reply();
     }
 
